@@ -2,32 +2,19 @@ from loc import Location
 from pydantic import BaseModel, validator
 
 
-class Temperature(BaseModel):
-    temp: float
-    feels_like: float
-    temp_min: int
-    temp_max: int
-
-
-class Weather(BaseModel):
-    temperature: list[Temperature]
-    pressure: int
+class Description(BaseModel):
     description: str
-    name: str
 
 
 class WeatherInfo(BaseModel):
     main: dict
-    weather: list
+    weather: list[Description]
     name: str
 
 
 city = Location(25, 60)
 weather_info = city.get_info()
 info = WeatherInfo.parse_raw(weather_info)
-
-print(weather_info, end='\n\n')
-
 
 # out_info = {"Weather": {"temperature": {"temp": info.main["temp"],
 #                                         "feels_like": info.main["feels_like"],
@@ -41,4 +28,3 @@ print(weather_info, end='\n\n')
 #             }
 
 print(info)
-
