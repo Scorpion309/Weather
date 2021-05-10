@@ -9,5 +9,5 @@ class Location:
 
     def get_info(self):
         url = f"https://fcc-weather-api.glitch.me/api/current?lat={self.latitude}&lon={self.longitude}"
-        weather_info = requests.get(url).text
+        weather_info = requests.get(url).json()
         return weather_info
