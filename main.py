@@ -8,7 +8,7 @@ class Temperature(BaseModel):
     temp_min: int
     temp_max: int
     @validator('temp')
-    def to_celsius(cls, v):
+    def to_fahrenheit(cls, v):
         return int(v*1.8+32)
 
 
